@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=wds_store
+POSTGRES_USER=utVUyFYsyEPStEuccHkaBWSFwkQJWczd
+POSTGRES_PASSWORD=UwDycB2w4Nlw1XC4NpVkwFI7795vwWWJuLmwHyKWIFBUt0SvGlZctge1vLk3BEfQ

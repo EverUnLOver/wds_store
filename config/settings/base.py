@@ -69,10 +69,13 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_beat",
+    "django_filters",
+    "bootstrapform",
 ]
 
 LOCAL_APPS = [
     "wds_store.shirts.apps.ShirtsConfig",
+    "wds_store.extras.apps.ExtrasConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

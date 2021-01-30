@@ -9,6 +9,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
+    path("", include("wds_store.shirts.urls", namespace="shirts")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

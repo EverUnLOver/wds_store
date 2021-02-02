@@ -621,7 +621,7 @@ body[data-sidebar="colored"].vertical-collpsed .vertical-menu #sidebar-menu ul l
   color: #556ee6 !important; }
 
 .topnav {
-  background: #fff;
+  background: #000000;
   padding: 0 calc(24px / 2);
   -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
           box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);

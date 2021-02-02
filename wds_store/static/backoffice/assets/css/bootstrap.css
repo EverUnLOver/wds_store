@@ -3659,7 +3659,8 @@ input[type="button"].btn-block {
   list-style: none; }
   .navbar-nav .nav-link {
     padding-right: 0;
-    padding-left: 0; }
+    padding-left: 0;
+ }
   .navbar-nav .dropdown-menu {
     position: static;
     float: none; }
@@ -8502,7 +8503,7 @@ button, a {
   color: #eff2f7 !important; }
 
 .btn-outline-light {
-  color: #212529; }
+  color: white !important; }
 
 .btn-group-example .btn {
   position: relative; }

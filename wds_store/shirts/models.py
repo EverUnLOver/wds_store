@@ -3,6 +3,7 @@
 # Django
 from django.db import models
 
+# Modelo principal
 class Camisa(models.Model):
     """Camisas basicas."""
     CHOICE = (
@@ -22,4 +23,13 @@ class Camisa(models.Model):
         """."""
         return '%s' % (self.id)
 
+# Modelo secundario
+class Colore(models.Model):
+    """."""
+    color = models.CharField(max_length=15)
+    class Meta:
+        """."""
+        ordering = ['color']
+    def __str__(self):
+        return '%s' % (self.color)
 

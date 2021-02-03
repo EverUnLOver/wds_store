@@ -6,10 +6,10 @@ from django import forms
 # Utils
 from collections import Counter
 
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 # Models
-from .models import Imagene
+from .models import Colore
 
 class InlineImageneFormSet(forms.BaseInlineFormSet):
     def clean(self):
@@ -35,7 +35,8 @@ class InlineImageneFormSet(forms.BaseInlineFormSet):
                 if data == self.cleaned_data[-1]:
                     if not True in recolector_imagen_principal:
                         raise forms.ValidationError('Necesitas seleccionar al menos una imagen como principal.')
-
+            if len(self.forms) == 0:
+                raise KeyError
         except (KeyError, AttributeError):
             raise forms.ValidationError('Asegurece de completar todos los datos requeridos.')
 
@@ -172,3 +173,17 @@ class InlineImageneFormSet(forms.BaseInlineFormSet):
             if self.forms[form].cleaned_data['DELETE']:
                 #print(self.forms[form].instance, ' : ', self.forms[form].instance.color, ' : ', self.forms[form].instance.orden, ' : ', self.forms[form].cleaned_data['DELETE']) 
                 self.forms[form].instance.delete()
+# ----------------------------------------------- end --------------------------------------------
+
+# Form color
+class ColorForm(forms.ModelForm):
+
+    def clean(self):
+        capitalize = self.cleaned_data['color'].capitalize()
+        self.cleaned_data['color'] = capitalize
+        self.instance.color = capitalize
+        try:
+            if Colore.objects.get(color=capitalize):
+                raise forms.ValidationError('Este color ya ha sido registrado antes.')
+        except (ObjectDoesNotExist):
+            return super().clean()

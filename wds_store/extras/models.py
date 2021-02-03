@@ -5,17 +5,9 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 # Models
-from wds_store.shirts.models import Camisa
+from wds_store.shirts.models import Camisa, Colore
 
-class Colore(models.Model):
-    """."""
-    color = models.CharField(max_length=15, unique=True, error_messages={'unique': 'Ya existe ese color'})
-    class Meta:
-        """."""
-        ordering = ['color']
-    def __str__(self):
-        return '%s' % (self.color)
-
+# Modelo no visible
 class Imagene(models.Model):
     """."""
 

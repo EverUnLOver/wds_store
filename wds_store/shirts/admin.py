@@ -2,18 +2,24 @@
 
 # Django
 from django.contrib import admin
+from django.db import models
 from django.utils.safestring import mark_safe
 
 # Forms
 from wds_store.extras.forms import (
-    InlineImageneFormSet
+    InlineImageneFormSet,
+    ColorForm
 )
 
 # Models
-from .models import Camisa
+from .models import Camisa, Colore
 from wds_store.extras.models import Imagene
 
+# Pagina admin
+admin.site.site_title = "Camisas"
+admin.site.index_title = "Administrador"
 
+# Admin alineado con el principal
 class ImageneInline(admin.TabularInline):
     """Clase Admin para administrar el modelo Camisa junto a Imagene."""
     model = Imagene
@@ -28,6 +34,7 @@ class ImageneInline(admin.TabularInline):
     def get_fields(self, request, obj):
         return super().get_fields(request, obj=obj)
 
+# Admin principal
 class CamisaAdmin(admin.ModelAdmin):
     """."""
     inlines = (ImageneInline,)
@@ -59,7 +66,13 @@ class CamisaAdmin(admin.ModelAdmin):
     fecha_de_modificacion.short_description = "modificacion"
     fecha_de_modificacion.allow_tags = True
 
-    
-
-
 admin.site.register(Camisa, CamisaAdmin)
+
+# Admin secundario
+
+class ColorAdmin(admin.ModelAdmin):
+    
+    form = ColorForm
+    list_display = ('color',)
+
+admin.site.register(Colore, ColorAdmin)

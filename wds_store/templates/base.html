@@ -11,13 +11,16 @@
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <!-- ION Slider -->
+        <link href="{% static 'backoffice/assets/libs/ion-rangeslider/css/ion.rangeSlider.min.css' %}" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap Css -->
-        <link href="{% static 'backoffice/assets/css/bootstrap.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{% static 'backoffice/assets/css/custom.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
           <!-- Icons Css -->
         <link href="{% static 'backoffice/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{% static 'backoffice/assets/css/app-dark.css' %}" id="app-style" rel="stylesheet" type="text/css" />    
+        <link href="{% static 'backoffice/assets/css/app-custom.css' %}" id="app-style" rel="stylesheet" type="text/css" /> 
+           
 
     </head>
 
@@ -211,6 +214,18 @@
                         </nav>
                     </div>
                 </div>
+                <div class="main-content">
+
+                    <div class="page-content">
+                        <div class="container-fluid">
+        
+                            {% block container %}
+                            {% endblock container %}
+        
+                        </div> <!-- container-fluid -->
+                    </div>
+                </div>  <!-- End Page-content -->
+        
                 <!-- Modal -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -289,9 +304,15 @@
         <script src="{% static 'backoffice/assets/libs/node-waves/waves.min.js' %}"></script>
 
         <!-- apexcharts -->
-        <script src="{% static 'assets/libs/apexcharts/apexcharts.min.js' %}"></script>
+        <script src="{% static 'backoffice/assets/libs/apexcharts/apexcharts.min.js' %}"></script>
 
-        <script src="{% static 'assets/js/pages/dashboard.init.js' %}"></script>
+        <script src="{% static 'backoffice/assets/js/pages/dashboard.init.js' %}"></script>
+
+         <!-- Ion Range Slider-->
+         <script src="{% static 'backoffice/assets/libs/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+
+         <!-- init js -->
+         <script src="{% static 'backoffice/assets/js/pages/product-filter-range.init.js' %}"></script>
 
         <!-- App js -->
         <script src="{% static 'assets/js/app.js' %}"></script>

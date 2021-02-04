@@ -8503,7 +8503,7 @@ button, a {
   color: #eff2f7 !important; }
 
 .btn-outline-light {
-  color: white !important; }
+  color: transparent !important; }
 
 .btn-group-example .btn {
   position: relative; }

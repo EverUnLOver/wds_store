@@ -561,10 +561,11 @@ ul.messagelist li.error {
 }
 
 ul.errorlist {
+    text-align: center;
     margin: 0 0 4px;
     padding: 0;
     color: rgb(94, 80, 0);
-    background: #fff;
+    background: rgb(233, 146, 214);
 }
 
 ul.errorlist li {

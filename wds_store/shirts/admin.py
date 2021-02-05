@@ -42,7 +42,7 @@ class CamisaAdmin(admin.ModelAdmin):
 
     def ver_imagen_principal(self, obj):
         """."""
-        imagen_principal = Imagene.objects.get(camisa__id=obj.id, imagen_principal=True)
+        imagen_principal = Imagene.objects.get(camisa__id=obj.id, imagen_principal='SI')
         return mark_safe('<img src="{}" width="100" />'.format(imagen_principal.imagen.url))
     ver_imagen_principal.short_description = "ver imagen principal"
     ver_imagen_principal.allow_tags = True
@@ -61,7 +61,7 @@ class CamisaAdmin(admin.ModelAdmin):
     todos_los_colores.allow_tags = True
     
     def fecha_de_modificacion(self, obj):
-        imagen_principal = Imagene.objects.get(camisa__id=obj.id, imagen_principal=True)
+        imagen_principal = Imagene.objects.get(camisa__id=obj.id, imagen_principal='SI')
         return imagen_principal.fecha_modificacion
     fecha_de_modificacion.short_description = "modificacion"
     fecha_de_modificacion.allow_tags = True

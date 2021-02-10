@@ -19,7 +19,6 @@ class CamisaForm(forms.ModelForm):
     def clean(self):
         try:
             self.cleaned_data['talla']
-            self.cleaned_data['tipo']
         except (KeyError):
             raise forms.ValidationError('Asegurece de completar todos los campos requeridos antes de guardar.')
         if self.instance.id == None:

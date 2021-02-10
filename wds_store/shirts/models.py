@@ -52,7 +52,7 @@ class Camisa(models.Model):
     )
 
     id = models.AutoField(auto_created=True, primary_key=True, unique=True, error_messages={'unique': 'Ya esta esa id.'})
-    tipo = models.CharField(max_length=7, choices=TIPO)
+    tipo = models.CharField(max_length=7, choices=TIPO, null=True, blank=True)
     talla = models.ManyToManyField(Talla, related_name='Tallas', blank=False, null=False)
     celebracion = models.ForeignKey(Celebration, on_delete=models.SET_NULL, null=True, blank=True)
     colores = models.ManyToManyField(Color, related_name='Colores', editable=False)

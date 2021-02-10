@@ -2,17 +2,17 @@
 
 # Django
 from django.contrib import admin
-from django.db import models
 from django.utils.safestring import mark_safe
 
 # Forms
 from wds_store.extras.forms import (
     InlineImageneFormSet,
-    ColorForm
+    ColorForm,
+    CamisaForm
 )
 
 # Models
-from .models import Camisa, Colore
+from .models import Camisa, Celebration, Color, Talla
 from wds_store.extras.models import Imagene
 
 # Pagina admin
@@ -26,19 +26,23 @@ class ImageneInline(admin.TabularInline):
     can_delete = True
     verbose_name_plural = 'imagenes de la camisa'
     formset = InlineImageneFormSet
-
-    def get_extra(self, request, obj, **kwargs):
-        extra = 0
-        return extra
-    
-    def get_fields(self, request, obj):
-        return super().get_fields(request, obj=obj)
+    extra = 0
 
 # Admin principal
 class CamisaAdmin(admin.ModelAdmin):
     """."""
+    
     inlines = (ImageneInline,)
     list_display = ("tipo", "ver_imagen_principal", "todos_los_colores", "fecha_de_modificacion")
+    list_filter = ("tipo", 'celebracion', 'colores', 'talla')
+    form = CamisaForm
+    #filter_horizontal = ('talla',)
+    fieldsets = (
+        ('DETALLES CAMISA', {
+            'fields': (('tipo','talla','celebracion'),),
+            'classes': ('inline'),
+        }),
+    )
 
     def ver_imagen_principal(self, obj):
         """."""
@@ -75,4 +79,6 @@ class ColorAdmin(admin.ModelAdmin):
     form = ColorForm
     list_display = ('color',)
 
-admin.site.register(Colore, ColorAdmin)
+admin.site.register(Color, ColorAdmin)
+admin.site.register(Talla)
+admin.site.register(Celebration)

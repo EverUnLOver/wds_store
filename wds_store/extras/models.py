@@ -5,7 +5,8 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 # Models
-from wds_store.shirts.models import Camisa, Colore
+from wds_store.shirts.models import Camisa, Color
+
 
 # Modelo no visible
 class Imagene(models.Model):
@@ -20,7 +21,7 @@ class Imagene(models.Model):
 
     # Informacion principal de imagen
     imagen = models.ImageField(upload_to='camisas')
-    color = models.ForeignKey(Colore, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE)
     orden = models.PositiveIntegerField(blank=True, editable=True)
     imagen_principal = models.CharField(max_length=2, choices=CHOICES, default=CHOICES[0][0])
     fecha_modificacion = models.DateTimeField(auto_now=True)

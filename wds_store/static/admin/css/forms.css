@@ -13,9 +13,13 @@
     vertical-align: middle;
 }
 
-.form-row label input[type="checkbox"] {
-    margin-top: 0;
-    vertical-align: 0;
+input[type=checkbox] {
+    content: "\2714";
+    background-color: #a41515;
+    padding-left: 0.2em;
+    padding-bottom: 0.3em;
+    margin-right: 0.2em;
+    cursor: pointer;
 }
 
 form .form-row p {
@@ -483,6 +487,7 @@ body.popup .submit-row {
 .inline-group .tabular tr.add-row td {
     padding: 8px 10px;
     border-bottom: 1px solid #eee;
+    width: 100px;
 }
 
 .inline-group ul.tools a.add,

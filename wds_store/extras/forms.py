@@ -1,16 +1,31 @@
 """Validaciones basadas en formularios para el admin."""
 
 # Django
-import pdb
 from django import forms
 
 # Utils
 from collections import Counter
 
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms.forms import Form
 
 # Models
-from .models import Colore
+from .models import Color
+
+# ------------------------------------------ end ---------------------------------------------------
+
+# Form camisa
+class CamisaForm(forms.ModelForm):
+    def clean(self):
+        try:
+            self.cleaned_data['talla']
+            self.cleaned_data['tipo']
+        except (KeyError):
+            raise forms.ValidationError('Asegurece de completar todos los campos requeridos antes de guardar.')
+        if self.instance.id == None:
+            self.instance.save()
+
+# ------------------------------------------ end ----------------------------------------------------
 
 class InlineImageneFormSet(forms.BaseInlineFormSet):
     def clean(self):
@@ -41,7 +56,11 @@ class InlineImageneFormSet(forms.BaseInlineFormSet):
             if len(self.forms) == 0:
                 raise KeyError
         except (KeyError, AttributeError):
-            raise forms.ValidationError('Asegurece de completar todos los datos requeridos.')
+            try:
+                self.instance.delete()
+            except (AssertionError):
+                return
+            raise forms.ValidationError('Asegurece de completar todos los campos requeridos antes de guardar.')
         # Validacion repetir imagen ---
         for primero in range(len(self.forms)):
                 v = primero + 1
@@ -63,17 +82,22 @@ class InlineImageneFormSet(forms.BaseInlineFormSet):
                     self.forms[form].cleaned_data['orden'] = orden
                     self.forms[form].instance.orden = orden
                     orden += 1
-        # Save New
-        self.instance.save()
-        for form in range(len(self.forms)):
-            if not self.forms[form].cleaned_data['DELETE']:
-                #print(self.forms[form].instance, ' : ', self.forms[form].instance.color, ' : ', self.forms[form].instance.orden, ' : ', self.forms[form].cleaned_data['DELETE']) 
-                self.forms[form].instance.save()
-        #print('-----')
-        for form in range(len(self.forms)):
-            if self.forms[form].cleaned_data['DELETE']:
-                #print(self.forms[form].instance, ' : ', self.forms[form].instance.color, ' : ', self.forms[form].instance.orden, ' : ', self.forms[form].cleaned_data['DELETE']) 
-                self.forms[form].instance.delete()
+        try:
+            # Delete
+            for form in range(len(self.forms)):
+                if self.forms[form].cleaned_data['DELETE']:
+                    #print(self.forms[form].instance, ' : ', self.forms[form].instance.color, ' : ', self.forms[form].instance.orden, ' : ', self.forms[form].cleaned_data['DELETE']) 
+                    self.forms[form].instance.delete()
+                    self.instance.colores.remove(self.forms[form].instance.color)
+            # Save
+            for form in range(len(self.forms)):
+                if not self.forms[form].cleaned_data['DELETE']:
+                    #print(self.forms[form].instance, ' : ', self.forms[form].instance.color, ' : ', self.forms[form].instance.orden, ' : ', self.forms[form].cleaned_data['DELETE']) 
+                    self.forms[form].instance.save()
+                    self.instance.colores.add(self.forms[form].instance.color)
+        except (ValueError):
+            return
+
 # ----------------------------------------------- end --------------------------------------------
 
 # Form color
@@ -84,7 +108,7 @@ class ColorForm(forms.ModelForm):
         self.cleaned_data['color'] = capitalize
         self.instance.color = capitalize
         try:
-            if Colore.objects.get(color=capitalize):
+            if Color.objects.get(color=capitalize):
                 raise forms.ValidationError('Este color ya ha sido registrado antes.')
         except (ObjectDoesNotExist):
             return super().clean()

@@ -12,8 +12,7 @@
 }
 
 #changelist table {
-    width: 87.3%;
-    margin-right: 72px;
+    width: 100%;
 }
 
 .change-list .hiddenfields { display:none; }
@@ -57,7 +56,7 @@ form#changelist-form {
     background: rgb(182, 169, 50);
     overflow: hidden;
     text-align: center;
-    width: 85.8%;
+    width: 98.6%;
     box-shadow: 30px 30px 20px rgb(0, 0, 0, 0.3);
     align-self: center;
 }
@@ -144,7 +143,7 @@ form#changelist-form {
     width: 240px;
     background: black;
     border-left: none;
-    margin: 0 0 0 0px;
+    margin: 0 0 0 130px;
 }
 
 #changelist-filter h2 {

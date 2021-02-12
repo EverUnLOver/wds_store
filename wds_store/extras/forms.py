@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms.forms import Form
 
 # Models
-from .models import Color
+from .models import Color, Talla
 
 # ------------------------------------------ end ---------------------------------------------------
 
@@ -107,3 +107,16 @@ class ColorForm(forms.ModelForm):
                 raise forms.ValidationError('Este color ya ha sido registrado antes.')
         except (ObjectDoesNotExist):
             return super().clean()
+
+# ----------------------------------------------- end --------------------------------------------
+
+# Form talla
+class TallaForm(forms.ModelForm):
+
+    def clean(self):
+        capitalize = self.cleaned_data['talla'].capitalize()
+        tallas = Talla.objects.all()
+        for talla in tallas:
+            if talla.talla.capitalize() == capitalize and self.instance.id != talla.id:
+                raise forms.ValidationError('Esta talla ya ha sido registrada antes.')
+        return super().clean()

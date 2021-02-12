@@ -228,6 +228,7 @@ td, th {
     line-height: 16px;
     border-bottom: 1px solid rgb(100, 93, 93);
     vertical-align: top;
+    text-align: center;
     padding: 8px;
 }
 

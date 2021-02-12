@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 # Models
-from wds_store.shirts.models import Camisa, Color
+from wds_store.shirts.models import Camisa, Color, Talla
 
 
 # Modelo no visible

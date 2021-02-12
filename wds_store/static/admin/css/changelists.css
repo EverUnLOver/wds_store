@@ -12,7 +12,8 @@
 }
 
 #changelist table {
-    width: 100%;
+    width: 87.3%;
+    margin-right: 72px;
 }
 
 .change-list .hiddenfields { display:none; }
@@ -27,7 +28,7 @@
 
 .change-list .filtered .results, .change-list .filtered .paginator,
 .filtered #toolbar, .filtered div.xfull {
-    width: auto;
+    width: 100%;
 }
 
 .change-list .filtered table tbody th {
@@ -37,6 +38,12 @@
 #changelist-form .results {
     overflow-x: auto;
     width: 100%;
+    justify-content: center;
+}
+
+form#changelist-form {
+    justify-content: center;
+    align-items: center;
 }
 
 #changelist .toplinks {
@@ -49,6 +56,10 @@
     border-bottom: 1px solid #eee;
     background: rgb(182, 169, 50);
     overflow: hidden;
+    text-align: center;
+    width: 85.8%;
+    box-shadow: 30px 30px 20px rgb(0, 0, 0, 0.3);
+    align-self: center;
 }
 
 /* CHANGELIST TABLES */
@@ -133,7 +144,7 @@
     width: 240px;
     background: black;
     border-left: none;
-    margin: 0 0 0 295px;
+    margin: 0 0 0 0px;
 }
 
 #changelist-filter h2 {

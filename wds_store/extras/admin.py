@@ -5,7 +5,7 @@ from django.contrib import admin
 
 # Models
 from .models import (
-    Imagene
+    Imagenes
 )
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
@@ -25,7 +25,7 @@ from django_celery_beat.models import (    # type: ignore
 )
 
 # Register
-admin.site.register(Imagene)
+admin.site.register(Imagenes)
 
 # Unregister
 admin.site.unregister(Group)

@@ -1,0 +1,29 @@
+li a {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+a.btn.btn-sm {
+    background-color: lightgreen;
+}
+
+a.btn.btn-sm:hover {
+    background-color: green;
+}
+
+a.btn.btn-sm.delete {
+    background-color: rgb(238, 55, 92);
+}
+
+a.btn.btn-sm.delete:hover {
+    background-color: brown;
+}
+
+button.btn, button.btn:focus, a.btn {
+    background-color: cyan;
+    box-shadow: none;
+}
+
+button.btn:hover, a.btn:hover {
+    background-color: rgb(0, 180, 180);
+}

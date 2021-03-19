@@ -5,11 +5,11 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 # Models
-from wds_store.shirts.models import Camisa, Color, Talla
+from wds_store.shirts.models import Item, Color, Talla
 
 
 # Modelo no visible
-class Imagene(models.Model):
+class Imagenes(models.Model):
     """."""
     CHOICES = (
         ('NO','No'),
@@ -17,7 +17,7 @@ class Imagene(models.Model):
     )
 
     # Identificador imagen
-    camisa = models.ForeignKey(Camisa, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     # Informacion principal de imagen
     imagen = models.ImageField(upload_to='camisas')
@@ -28,4 +28,6 @@ class Imagene(models.Model):
 
     class Meta:
         """."""
-        ordering = ['camisa', 'color', 'orden']
+        ordering = ['item', 'color', 'orden']
+        verbose_name = "Imagenes"
+        verbose_name_plural = "Imagenes"

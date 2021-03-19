@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/filtrar_items.css' %}">
+{% endblock style %}
+{% block content %}
+
+  {% if modelo == 'producto' %}
+    <div class="media row row-cols-1 row-cols-md-3 g-4">
+      <div class="media mt-0">
+        <div class="media-body btn-group dropdown">
+          <a class="btn btn-lg" href="{% url 'items:create' 'talla' objeto %}"><strong>Tallas</strong></a>
+          <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+            {% for talla in tallas %}
+              <li class="btn-group mb-1">
+                <a class="dropdown-item" href="{% url 'items:itemlist' 'talla' talla %}">{{ talla }}</a>
+                <a class="btn btn-sm" href="{% url 'items:update' 'talla' talla 'objeto' %}">Update</a>
+                <a class="btn btn-sm delete" href="{% url 'items:delete' 'talla' talla %}">Delete</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% for item in items  %}
+      {% for imagen in imagenes %}
+        
+        {% if item.id == imagen.item.id %}
+          <br>
+          <div class="media">
+            <div class="media-body">
+              <a id="producto" href="{{ imagen.imagen.url }}">
+                <img src="{{ imagen.imagen.url }}" alt="imagen.id">
+              </a>
+            </div>
+            <div class="media-body">
+              <a class="btn btn-info" href="{% url 'items:update' modelo item slugname %}">
+                Update!
+              </a>
+            </div>
+            <div class="media-body">
+              <a class="btn btn-danger" href="{% url 'items:delete' modelo item slugname %}">
+                Delete!
+              </a>
+            </div>
+          </div>
+        {% endif %}
+          
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+  {% for imagen in imagenes  %}
+    <br>
+    <div class="media">
+      <div class="media-body">
+        <a id="producto" href="{{ imagen.imagen.url }}">
+          <img src="{{ imagen.imagen }}" alt="imagen.id">
+        </a>
+    </div>
+  {% endfor %}
+{% endblock content %}

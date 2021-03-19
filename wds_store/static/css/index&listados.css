@@ -1,0 +1,40 @@
+button.btn, a.btn{
+    background-color: crimson;
+}
+
+button.btn:focus {
+    box-shadow: none;
+}
+
+button.btn:hover, a.btn:hover {
+    background-color: brown;
+}
+
+button strong, a strong {
+    color: yellow;
+}
+
+div.media-body ul.dropdown-menu {
+    background-color: yellow;
+}
+
+li a {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+a.btn.btn-sm {
+    background-color: lightgreen;
+}
+
+a.btn.btn-sm:hover {
+    background-color: green;
+}
+
+a.btn.btn-sm.delete {
+    background-color: rgb(240, 65, 100);
+}
+
+a.btn.btn-sm.delete:hover {
+    background-color: brown;
+}

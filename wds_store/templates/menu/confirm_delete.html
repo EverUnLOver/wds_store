@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="POST">
+      {% csrf_token %}
+      <div class="media" style="background-color: white;">
+        <div class="media-body">
+            <button class="btn btn-danger" type="submit">Yes, DO IT</button>
+        </div>
+        <div class="media-body">
+            <a class="btn btn-success" href="{% url 'items:menu' %}">No, DON'T DO IT</a>
+        </div>
+      </div>
+  </form>
+{% endblock content %}

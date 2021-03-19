@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/index&listados.css' %}">
+{% endblock style %}
+{% block content %}
+  <div class="media row row-cols-1 row-cols-md-3 g-4">
+    <div class="media mt-0">
+      <div class="btn-group">
+        <div class="media-body btn-group dropdown">
+          <a class="btn btn-lg" href="{% url 'items:create' 'producto' '...' %}"><strong>Productos</strong></a>
+          <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+            {% for producto in productos %}
+              <li class="btn-group mb-1">
+                <a class="dropdown-item" href="{% url 'items:itemlist' 'producto' producto %}">{{ producto }}</a>
+                <a class="btn btn-sm" href="{% url 'items:update' 'producto' producto '...' %}">Update</a>
+                <a class="btn btn-sm delete" href="{% url 'items:delete' 'producto' producto %}">Delete</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="media-body btn-group dropdown" id="expandir_button">
+          <a class="btn btn-lg" href="{% url 'items:create' 'color' '...' %}"><strong>Colores</strong></a>
+          <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+            {% for color in colores %}
+              <li class="btn-group mb-1">
+                <a class="dropdown-item" href="{% url 'items:itemlist' 'color' color %}">{{ color }}</a>
+                <a class="btn btn-sm" href="{% url 'items:update' 'color' color '...' %}">Update</a>
+                <a class="btn btn-sm delete" href="{% url 'items:delete' 'color' color %}">Delete</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="media-body btn-group dropdown">
+          <a class="btn btn-lg" href="{% url 'items:create' 'celebracion' '...' %}"><strong>Celebraciones</strong></a>
+          <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+            {% for celebracion in celebraciones %}
+              <li class="btn-group mb-1">
+                <a class="dropdown-item" href="{% url 'items:itemlist' 'celebracion' celebracion %}">{{ celebracion }}</a>
+                <a class="btn btn-sm" href="{% url 'items:update' 'celebracion' celebracion '...' %}">Update</a>
+                <a class="btn btn-sm delete" href="{% url 'items:delete' 'celebracion' celebracion %}">Delete</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

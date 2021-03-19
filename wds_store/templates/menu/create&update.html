@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+  {% if modelo == 'Talla' %}
+    <div class="media">
+      <form method="POST">
+          {% csrf_token %}
+          <div class="media">
+            <div class="form-group">
+              <label style="color: yellow;">{{ modelo }}</label>
+              <input class="form-control" type="text" placeholder="Talla" name="talla" value="{{talla.talla}}" required>
+            </div>
+            <div class="form-group">
+              <label style="color: yellow;">Orden</label>
+              <input class="form-control" type="number" min=0 value="0" placeholder="Orden" name="orden">
+            </div>
+            <div class="form-group">
+            <label style="color: yellow;">Productos</label>
+              {% for objeto in list %}
+                <div class="form-group">
+                  {% if objeto.nombre == slugname %}
+                    <input type="checkbox" name="producto" checked required value="{{objeto.id}}">
+                  {% elif objeto.nombre in productos_checked %}
+                    <input type="checkbox" name="producto" checked value="{{objeto.id}}">
+                  {% else %}
+                    <input type="checkbox" name="producto" value="{{objeto.id}}">
+                  {% endif %}
+                  <label style="color: aliceblue;">{{objeto.nombre}}</label>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="media-body">
+              <button class="btn btn-warning" type="submit">Up!</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  {% else %}
+    <div class="media">
+      <form method="POST">
+          {% csrf_token %}
+          <div class="media">
+            <div class="form-group">
+              <label style="color: yellow;">{{ modelo }}</label>
+              {% if modelo == 'Celebracion' %}
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" value="{{celebration.nombre}}">
+              {% endif %}
+              {% if modelo == 'Producto' %}
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" value="{{producto.nombre}}">
+              {% endif %}
+              {% if modelo == 'Color' %}
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" value="{{color.nombre}}">
+              {% endif %}
+              {% if modelo == 'Item' %}
+                <h1><strong>{{ slugname }} {{ slugname.id }}</strong></h1>
+                <input type="hidden" value="slugname.id" name="producto">
+                <label style="color: yellow;">Tallas</label>
+                <select class="js-select form-control-lg mr-sm-2" name="talla" multiple>
+                  {% for talla in tallas %}
+                    <option value="{{ talla.id }}">{{ talla }}</option>
+                  {% endfor %}
+                </select>
+                <label style="color: yellow;">Celebracion</label>
+                <select class="js-select form-control-lg mr-sm-2" name="celebracion">
+                  <option></option>
+                  {% for celebracion in celebraciones %}
+                    <option value="{{ celebracion.id }}">{{ celebracion }}</option>
+                  {% endfor %}
+                </select>
+                <label style="color: yellow;">Publico</label>
+                <select class="js-select" name="publico">
+                    <option value="HOMBRE">Hombre</option>
+                    <option value="MUJER">Mujer</option>
+                    <option value="NIÑA">Niña</option>
+                    <option value="NIÑO">Niño</option>
+                </select>
+                <fieldset class="module">
+                  <h2>Imagenes del producto</h2>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th class="original"></th>
+                        <th class="column-image required">Imagen</th>
+                        <th class="column-color required">Color</th>
+                        <th class="column-orden">Orden</th>
+                        <th class="column-image_principal required">Imagen principal</th>
+                        <th>Delete?</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="form-row row1 empty-form" id="images_set-empty">
+                        <td class="original">
+                          <input type="hidden" name="imagenes_set-___prefix__-id" id="id_imagenes_set-__prefix__-id">
+                          <input type="hidden" name="imagenes_set-__prefix__-item" id="id_imagenes_set-__prefix__-item">
+                        </td>
+                        <td class="field-imagen">
+                          <div class="form-group">
+                            <input type="file" hidden name="imagenes_set-__prefix__-imagen" accept="imagen/*" id="id_imagenes_set-__prefix__-imagen">
+                            <label for="id_imagenes_set-__prefix__-imagen"><img src=""></label>
+                          </div>
+                        </td>
+                        <td class="field-color">
+                          <div class="related-widget-wrapper">
+                            <select name="imagenes_set-__prefix__-color" id="id_imagenes_set-__prefix__-color">
+                              <option value selected>---------</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td class="field-orden">
+                          <input type="number" name="imagenes_set-__prefix__-orden" class="vIntegerField" min="0" id="id_imagenes_set-__prefix__-orden">
+                        </td>
+                        <td class="field-imagen_principal">
+                          <select name="imagenes_set-__prefix__-imagen_principal" id="id_imagenes_set-__prefix__-imagen_principal">
+                            <option value="NO" selected>No</option>
+                            <option value="SI">Si</option>
+                          </select>
+                        </td>
+                        <td class="delete"></td>
+                      </tr>
+                      <tr class="add-row">
+                        <td colspan="6">
+                          <a href="#">Add another image</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </fieldset>
+              {% endif %}
+                
+            </div>
+            <div class="media-body">
+              <button class="btn btn-warning" type="submit">Up!</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  {% endif %}
+    
+{% endblock content %}
+
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.js-select').select2();
+    });
+  </script>
+{% endblock js %}

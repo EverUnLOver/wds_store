@@ -1,0 +1,28 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+div.media {
+    display: flex ;
+    justify-content: center;
+    background-color: black;
+}
+
+div.media div.media-body {
+    margin-block: 23px ;
+    margin-inline: 22px;
+}
+
+div.media div.form-group {
+    margin-inline: 22px;
+}
+
+a#producto {
+    color: aliceblue;
+    text-align: center;
+}
+
+br {
+    background-color: bisque;
+}

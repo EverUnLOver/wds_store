@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(230, 230, 13);
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: rgba(128, 128, 128, 0.582);
+}
